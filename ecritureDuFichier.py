@@ -3,7 +3,7 @@
 import generator
 from math import pow
 #Choix des parametres du programme
-largeurMatrice = 8 #La matrice finale sera de taille 2^largeurMatrice+1
+largeurMatrice = 4 #La matrice finale sera de taille 2^largeurMatrice+1
 ratio = 10 #Il est multiplié à la valeur alératoire à ajouter à chaque point de la matrice
 xSpacing = int(ratio*largeurMatrice/13)
 zSpacing = int(ratio*largeurMatrice/13)
@@ -23,10 +23,17 @@ mon_fichier.write("\n\t\t\tWorldInfo {")
 mon_fichier.write("\n\t\t\t\ttitle \"Paysage\"")
 mon_fichier.write("\n\t\t\t\tinfo [ \"perf13 - automne 2016 - UQO \"]")
 mon_fichier.write("\n\t\t\t}\n")
-mon_fichier.write("\n\t\t\tViewpoint {")
-mon_fichier.write("\n\t\t\t\tposition 5 15 70")
-mon_fichier.write("\n\t\t\t\t#orientation 0 0 1 0")
+mon_fichier.write("\n\t\t\tNavigationInfo {")
+mon_fichier.write("\n\t\t\t\tavatarSize [0.25, 1.6, 0.75]")
+mon_fichier.write("\n\t\t\t\theadlight TRUE")
+mon_fichier.write("\n\t\t\t\tspeed 5.0")
+mon_fichier.write("\n\t\t\t\ttype \"WALK\"")
+mon_fichier.write("\n\t\t\t\tvisibilityLimit 50.0")
 mon_fichier.write("\n\t\t\t}\n")
+mon_fichier.write("\n\t\t\t#Viewpoint {")
+mon_fichier.write("\n\t\t\t\t#position 0" + str(tableau[(taille-1)/2+1][(taille-1)/2+1]) + "70")
+mon_fichier.write("\n\t\t\t\t#orientation 0 0 0 0")
+mon_fichier.write("\n\t\t\t#}\n")
 mon_fichier.write("\n\t\t\t#Background {")
 mon_fichier.write("\n\t\t\t\t#skyColor [0.165 0.616 0.843 0 0.882 1]")
 mon_fichier.write("\n\t\t\t\t#skyAngle [1.57 3.14]")
