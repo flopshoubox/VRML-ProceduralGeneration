@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import os
+from random import randint
 
 class Class1:
     """docstring for """
@@ -20,43 +21,86 @@ class Class1:
 
 
     def toString(self):
+        m = randint(0,3)
+
         stri = "Transform {\n"
         stri += "\ttranslation " + "  ".join(str(x) for x in self.posTree) + "\n"
         stri += "\tscale " + "  ".join(str(x) for x in self.scaleTree) + "\n"
         stri += "\tChildren [\n"
+
+        for z in range(0,1):
+            tempLeaf = self.pointIndexLeaf[:]
+            tempSpineTrunk = self.spineTrunk[:]
+            tempScale = [0.5,0.4,0.5]
+            tempTranslation = [0,2.6,0]
+            tempRotation = [z,0,-0.4,5]
+
+            stri += "\t\tTransform {\n"
+            stri += "\t\t\ttranslation " + "  ".join(str(x) for x in tempTranslation) + "\n"
+            stri += "\t\t\trotation " + "  ".join(str(x) for x in tempRotation) + "\n"
+            stri += "\t\t\tscale " + "  ".join(str(x) for x in tempScale) + "\n"
+            stri += "\t\t\tChildren [\n"
+
+            stri += "\t\t\t\tTransform {\n"
+            stri += "\t\t\t\t\ttranslation " + "  ".join(str(x) for x in self.posLeaf) + "\n"
+            stri += "\t\t\t\t\tChildren [\n"
+            stri += "\t\t\t\t\t\tShape {\n"
+            stri += "\t\t\t\t\t\t\tappearance Appearance {\n"
+            stri += "\t\t\t\t\t\t\t\tmaterial Material {\n"
+            stri += "\t\t\t\t\t\t\t\t\tdiffuseColor " + " ".join(str(x) for x in self.colorLeaf) + "\n"
+            stri += "\t\t\t\t\t\t\t\t}\n"
+            stri += "\t\t\t\t\t\t\t}\n"
+            stri += "\t\t\t\t\t\t\tgeometry IndexedFaceSet {\n"
+            stri += "\t\t\t\t\t\t\t\tcoord Coordinate {\n"
+            stri += "\t\t\t\t\t\t\t\t\tpoint [\n"
+            stri += listStr3(tempLeaf,9 ) + "]\n"
+            stri += "\t\t\t\t\t\t\t\t}\n"
+            stri += "\t\t\t\t\t\t\t\tcoordIndex [\n"
+            stri += listStr3(self.coordIndexLeaf,8) + "]\n"
+            stri += "\t\t\t\t\t\t\t}\n"
+            stri += "\t\t\t\t\t\t}\n"
+            stri += "\t\t\t\t\t]\n"
+            stri += "\t\t\t\t}\n"
+            stri += "\t\t\t]\n"
+            stri += "\t\t}\n"
+
+
         stri += "\t\tTransform {\n"
-        stri += "\t\ttranslation " + "  ".join(str(x) for x in self.posLeaf) + "\n"
-        stri += "\t\tChildren [\n"
-        stri += "\t\t\tShape {\n"
-        stri += "\t\t\t\tappearance Appearance {\n"
-        stri += "\t\t\t\t\tmaterial Material {\n"
-        stri += "\t\t\t\t\t\tdiffuseColor " + " ".join(str(x) for x in self.colorLeaf) + "\n"
+        stri += "\t\t\ttranslation " + "  ".join(str(x) for x in self.posLeaf) + "\n"
+        stri += "\t\t\tChildren [\n"
+        stri += "\t\t\t\tShape {\n"
+        stri += "\t\t\t\t\tappearance Appearance {\n"
+        stri += "\t\t\t\t\t\tmaterial Material {\n"
+        stri += "\t\t\t\t\t\t\tdiffuseColor " + " ".join(str(x) for x in self.colorLeaf) + "\n"
+        stri += "\t\t\t\t\t\t}\n"
+        stri += "\t\t\t\t\t}\n"
+        stri += "\t\t\t\t\tgeometry IndexedFaceSet {\n"
+        stri += "\t\t\t\t\t\tcoord Coordinate {\n"
+        stri += "\t\t\t\t\t\t\tpoint [\n"
+        stri += listStr3(self.pointIndexLeaf,7 ) + "]\n"
+        stri += "\t\t\t\t\t\t}\n"
+        stri += "\t\t\t\t\t\tcoordIndex [\n"
+        stri += listStr3(self.coordIndexLeaf,6) + "]\n"
         stri += "\t\t\t\t\t}\n"
         stri += "\t\t\t\t}\n"
-        stri += "\t\t\t\tgeometry IndexedFaceSet {\n"
-        stri += "\t\t\t\t\tcoord Coordinate {\n"
-        stri += "\t\t\t\t\t\tpoint [\n"
-        stri += listStr3(self.pointIndexLeaf,6 ) + "]\n"
-        stri += "\t\t\t\t\t}\n"
-        stri += "\t\t\t\t\tcoordIndex [\n"
-        stri += listStr3(self.pointIndexLeaf,5) + "]\n"
+        stri += "\t\t\t]\n"
+        stri += "\t\t}\n"
+
+
+        stri += "\t\tShape {\n"
+        stri += "\t\t\tappearance Appearance {\n"
+        stri += "\t\t\t\tmaterial Material {\n"
+        stri += "\t\t\t\t\tdiffuseColor " + " ".join(str(x) for x in self.colorTrunk) + "\n"
         stri += "\t\t\t\t}\n"
-        stri += "\t\t\t}\n"
-        stri += "\t\t]\n"
-        stri += "\t}\n"
-        stri += "\tShape {\n"
-        stri += "\t\tappearance Appearance {\n"
-        stri += "\t\t\tmaterial Material {\n"
-        stri += "\t\t\t\tdiffuseColor " + " ".join(str(x) for x in self.colorTrunk) + "\n"
-        stri += "\t\t\t}\n"
-        stri += "\t\t\tgeometry Extrusion {\n"
-        stri += "\t\t\t\tccw TRUE\n"
-        stri += "\t\t\t\tspine [\n"
-        stri += listStr3(self.spineTrunk, 4) + "]\n"
-        stri += "\t\t\t\tscale [\n"
-        stri += listStr2(self.scaleTrunk, 4) + "]\n"
-        stri += "\t\t\t\tcrossSection [\n"
-        stri += listStr2(self.crossSection, 4) + "]\n"
+        stri += "\t\t\t\tgeometry Extrusion {\n"
+        stri += "\t\t\t\t\tccw TRUE\n"
+        stri += "\t\t\t\t\tspine [\n"
+        stri += listStr3(self.spineTrunk, 5) + "]\n"
+        stri += "\t\t\t\t\tscale [\n"
+        stri += listStr2(self.scaleTrunk, 5) + "]\n"
+        stri += "\t\t\t\t\tcrossSection [\n"
+        stri += listStr2(self.crossSection, 5) + "]\n"
+        stri += "\t\t\t\t}\n"
         stri += "\t\t\t}\n"
         stri += "\t\t}\n"
         stri += "\t]\n"
