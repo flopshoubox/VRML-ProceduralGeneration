@@ -1,5 +1,6 @@
 # -*-coding:Latin-1 -*
 #programme créant une surface de taille "taille" (taille doit être égal à 2^n+1) à l'aide de l'algorithme carré-diamant.
+#programme implémentant une relation heure de la journée, couleur du ciel et orientation de la lumière
 import os
 
 from math import pow
@@ -53,12 +54,29 @@ def carreDiamant(taille,facteur):
 		i = j
 		pass
 	return liste
-# test de la fonction table
-if __name__ == "__main__":
-	tableau = carreDiamant(65)
-	tab2 = [ y for x in tableau for y in x]
-	test = ', '.join(map(str,tab2))
-	print test
 
+def colourTemperature(heure):
+	#4 positions : levé/couché, 1 heure avant/après, moyen été, midi été.
+	rgbFinalColour = [1,0.53,0.05, 1,0.75,0.55, 1,0.83,0.70, 1,0.92,0.86]
+	sortie = [0,0,0]
+	for x in xrange(0,3):
+		sortie[x] =rgbFinalColour[heure * 3 + x]
+		pass
+	return sortie
+
+def intensity(heure):
+	finalIntensity = [0.4, 0.5, 0.8, 1]
+	for x in xrange(0,3):
+		intensity = finalIntensity[heure]
+		pass
+	return intensity
+
+def lightAngle(heure):
+	angleX = [0.9, 0.8, 0.2, 0]
+	angleY = [-0.1, -0.2, -0.8, -1]
+	angles = [0,0]
+	angles [0] = angleX[heure] 
+	angles [1] = angleY[heure]
+	return angles
 
 
