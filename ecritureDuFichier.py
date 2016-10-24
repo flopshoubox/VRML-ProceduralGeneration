@@ -4,16 +4,17 @@ import generator
 from math import pow
 from random import randint
 #Choix des parametres du programme
-largeurMatrice = 6 #La matrice finale sera de taille 2^largeurMatrice+1
-ratio = 15 #Il est multiplié à la valeur alératoire à ajouter à chaque point de la matrice
+largeurMatrice = 7 #La matrice finale sera de taille 2^largeurMatrice+1
+ratio = 10 #Il est multiplié à la valeur alératoire à ajouter à chaque point de la matrice
 xSpacing = int(ratio*largeurMatrice/12)
 zSpacing = int(ratio*largeurMatrice/12)
 
 #Calcul du terrain
-taille=int(pow(2,largeurMatrice))+1
-tableau=generator.carreDiamant(taille,ratio)
-tab2 = [ y for x in tableau for y in x]
-outputString = ', '.join(map(str,tab2))
+taille = int(pow(2,largeurMatrice))+1
+gridElevation = generator.carreDiamant(taille,ratio)
+gridColor = generator.elevationGridColor(taille,gridElevation)
+
+
 
 #Calcul de la position de l'avatar
 posX = str(pow(2,largeurMatrice-1)+1)
@@ -43,7 +44,7 @@ mon_fichier.write("\n\t\t\t\tavatarSize [0.25, 1.6, 0.75]")
 mon_fichier.write("\n\t\t\t\theadlight FALSE")
 mon_fichier.write("\n\t\t\t\tspeed 7.0")
 mon_fichier.write("\n\t\t\t\ttype \"WALK\"")
-mon_fichier.write("\n\t\t\t\tvisibilityLimit 200.0")
+mon_fichier.write("\n\t\t\t\tvisibilityLimit 800.0")
 mon_fichier.write("\n\t\t\t}\n")
 mon_fichier.write("\n\t\t\tViewpoint {")
 mon_fichier.write("\n\t\t\t\tposition " + posX + " " + posY + " " + posZ + "# 500 pour être sûr de ne pas passer sous la carte")
@@ -84,12 +85,22 @@ mon_fichier.write("\n\t\t\t\t\t\t\txSpacing " + str(xSpacing))
 mon_fichier.write("\n\t\t\t\t\t\t\tzDimension " + str(taille))
 mon_fichier.write("\n\t\t\t\t\t\t\tzSpacing " + str(zSpacing))
 mon_fichier.write("\n\t\t\t\t\t\t\theight [")
-for x in tableau:
+for x in gridElevation:
 	tabTemporaire = x
-	outputString2 = ', '.join(map(str,tabTemporaire))
-	mon_fichier.write("\n\t\t\t\t\t\t\t\t" + outputString2 + ",")
+	outputString = ', '.join(map(str,tabTemporaire))
+	mon_fichier.write("\n\t\t\t\t\t\t\t\t" + outputString + ",")
 	pass
 mon_fichier.write("\n\t\t\t\t\t\t\t]")
+mon_fichier.write("\n\t\t\t\t\t\t\tcolorPerVertex FALSE")
+mon_fichier.write("\n\t\t\t\t\t\t\tcolor Color {")
+mon_fichier.write("\n\t\t\t\t\t\t\t\tcolor [")
+for x in gridColor:
+	tabTemporaire = x
+	outputString = ', '.join(map(str,tabTemporaire))
+	mon_fichier.write("\n\t\t\t\t\t\t\t\t\t\t" + outputString + ",")
+	pass
+mon_fichier.write("\n\t\t\t\t\t\t\t\t]")
+mon_fichier.write("\n\t\t\t\t\t\t\t}\n")
 mon_fichier.write("\n\t\t\t\t\t\t}\n")
 mon_fichier.write("\n\t\t\t\t\t}\n")
 mon_fichier.write("\n\t\t\t\t]\n")

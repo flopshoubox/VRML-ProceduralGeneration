@@ -65,10 +65,8 @@ def colourTemperature(heure):
 	return sortie
 
 def intensity(heure):
-	finalIntensity = [0.4, 0.5, 0.8, 1]
-	for x in xrange(0,3):
-		intensity = finalIntensity[heure]
-		pass
+	finalIntensity = [0.6, 0.8, 0.9, 1]
+	intensity = finalIntensity[heure]
 	return intensity
 
 def lightAngle(heure):
@@ -78,5 +76,26 @@ def lightAngle(heure):
 	angles [0] = angleX[heure] 
 	angles [1] = angleY[heure]
 	return angles
+
+def elevationGridColor(taille,entree):
+	sortie = [["0 0 0"] * (taille-1) for _ in range (taille-1)]
+	for x in xrange(taille-1):
+			for y in xrange(taille-1):
+				moyenne = ( ( entree[x][y] + entree[x+1][y] + entree[x][y+1] + entree[x+1][y+1] ) / 4)
+				if moyenne < 0:
+					sortie [x][y] = "0 0.3 0.7"
+					pass
+				elif moyenne < 3:
+					sortie [x][y] = "0.15 0.3 0"
+					pass
+				elif moyenne < 70:
+					sortie [x][y] = "0 0.6 0"
+					pass
+				else :
+					sortie [x][y] = "1 1 1"
+					pass
+				pass
+			pass
+	return sortie
 
 
