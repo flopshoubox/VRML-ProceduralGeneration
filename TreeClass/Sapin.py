@@ -2,13 +2,13 @@
 import os
 from random import randint
 from random import uniform
-
+from CostumPrint import *
 
 class Sapin:
     """docstring for Sapin"""
 
     posTree = []
-    scaleTree = [1, 1 ,1]
+    scaleTree = []
     colorLeaf = [0,0.392157,0]
     colorTrunk = [0.545098,0.270588,0.0745098]
     scaleTrunkG = [0.75,1,0.75]
@@ -24,8 +24,9 @@ class Sapin:
 
 
 
-    def __init__(self, X=0, Y=0, Z=0):
+    def __init__(self,X=0,Y=0,Z=0,S=1):
         self.posTree = [X,Y,Z]
+        self.scaleTree = [S, S, S]
 
     def toString(self):
         stri = "#VRML V2.0 utf8\n\n"
@@ -88,28 +89,6 @@ class Sapin:
         stri += "}"
 
         return stri
-
-def listStr3(list, tab):
-    ind = 0
-    stri = "\t" * tab + " "
-    for x in list:
-        ind += 1
-        if ind%3 == 0:
-            stri += str(x) + ",\n" + "\t" * tab + " "
-        else:
-            stri += str(x) + " "
-    return stri
-
-def listStr2(list, tab):
-    ind = 0
-    stri = "\t" * tab + " "
-    for x in list:
-        ind += 1
-        if ind%2 == 0:
-            stri += str(x) + ",\n" + "\t" * tab + " "
-        else:
-            stri += str(x) + " "
-    return stri
 
 if __name__ == '__main__':
     myTree = Sapin()

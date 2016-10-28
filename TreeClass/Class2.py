@@ -2,11 +2,12 @@
 import os
 from random import randint
 from random import uniform
+from CostumPrint import *
 
 class Class2:
     """docstring for """
     posTree = []
-    scaleTree = [1, 1 ,1]
+    scaleTree = []
     colorLeaf = [0.443137,0.776471,0.443137]
     colorTrunk = [0.545098,0.270588,0.0745098]
     posLeaf = [0, 4, 0]
@@ -18,9 +19,9 @@ class Class2:
     crossSection = [1,0,0.707106,-0.707106,0,-1,-0.707106,-0.707106,-1,0,-0.707106,0.707106,0,1,0.707106,0.707106,1,0] #2
 
 
-    def __init__(self,X=0,Y=0,Z=0):
+    def __init__(self,X=0,Y=0,Z=0,S=1):
         self.posTree = [X,Y,Z]
-
+        self.scaleTree = [S, S, S]
 
     def toString(self):
         m = randint(2,3)
@@ -78,53 +79,6 @@ class Class2:
         stri += "}\n"
 
         return stri
-
-
-
-def listStr3(list, tab):
-    ind = 0
-    stri = "\t" * tab + " "
-    for x in list:
-        ind += 1
-        if ind%3 == 0:
-            stri += str(x) + ",\n" + "\t" * tab + " "
-        else:
-            stri += str(x) + " "
-    return stri
-
-def listStr4(list, tab):
-    ind = 0
-    stri = "\t" * tab + " "
-    for x in list:
-        ind += 1
-        if ind%4 == 0:
-            stri += str(x) + ",\n" + "\t" * tab + " "
-        else:
-            stri += str(x) + " "
-    return stri
-
-def listStr2(list, tab):
-    ind = 0
-    stri = "\t" * tab + " "
-    for x in list:
-        ind += 1
-        if ind%2 == 0:
-            stri += str(x) + ",\n" + "\t" * tab + " "
-        else:
-            stri += str(x) + " "
-    return stri
-
-def matrixRand(matrix,a=-0.25,b=0.25):
-    for i in range(0,len(matrix)):
-        matrix[i] += uniform(a,b)
-    return matrix
-
-def matrixRandTrunk(matrix,a=-0.05,b=0.05):
-    for i in range(0,len(matrix)/3):
-        r = uniform(a,b)
-        matrix[i*3] += r
-        matrix[i*3+2] += r
-    return matrix
 
 if __name__ == '__main__':
     myTree = Class2()
