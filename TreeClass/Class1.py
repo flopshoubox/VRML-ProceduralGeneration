@@ -1,7 +1,4 @@
 #!/usr/bin/python
-import os
-from random import randint
-from random import uniform
 from CostumPrint import *
 
 class Class1:
@@ -24,11 +21,12 @@ class Class1:
 
     def toString(self):
         m = randint(0,3)
-        stri = "#VRML V2.0 utf8\n\n"
+        RandColor(self.colorLeaf)
+        #stri = "#VRML V2.0 utf8\n\n"
 
 
 
-        stri += "Transform {\n"
+        stri = "Transform {\n"
         stri += "\ttranslation " + "  ".join(str(x) for x in self.posTree) + "\n"
         stri += "\tscale " + "  ".join(str(x) for x in self.scaleTree) + "\n"
         stri += "\tchildren [\n"
@@ -62,10 +60,10 @@ class Class1:
             stri += "\t\t\t\t\t\t\tgeometry IndexedFaceSet {\n"
             stri += "\t\t\t\t\t\t\t\tcoord Coordinate {\n"
             stri += "\t\t\t\t\t\t\t\t\tpoint [\n"
-            stri += listStr3(tempLeaf,9 ) + "]\n"
+            stri += listStr(tempLeaf,9, 3) + "]\n"
             stri += "\t\t\t\t\t\t\t\t}\n"
             stri += "\t\t\t\t\t\t\t\tcoordIndex [\n"
-            stri += listStr4(self.coordIndexLeaf,8) + "]\n"
+            stri += listStr(self.coordIndexLeaf, 8, 4) + "]\n"
             stri += "\t\t\t\t\t\t\t}\n"
             stri += "\t\t\t\t\t\t}\n"
             stri += "\t\t\t\t\t]\n"
@@ -79,11 +77,11 @@ class Class1:
             stri += "\t\t\t\t\tgeometry Extrusion {\n"
             stri += "\t\t\t\t\t\tccw TRUE\n"
             stri += "\t\t\t\t\t\tspine [\n"
-            stri += listStr3(tempSpineTrunk, 6) + "]\n"
+            stri += listStr(tempSpineTrunk, 6, 3) + "]\n"
             stri += "\t\t\t\t\t\tscale [\n"
-            stri += listStr2(self.scaleTrunk, 6) + "]\n"
+            stri += listStr(self.scaleTrunk, 6, 2) + "]\n"
             stri += "\t\t\t\t\t\tcrossSection [\n"
-            stri += listStr2(self.crossSection, 6) + "]\n"
+            stri += listStr(self.crossSection, 6, 2) + "]\n"
             stri += "\t\t\t\t\t}\n"
             stri += "\t\t\t\t}\n"
 
@@ -105,10 +103,10 @@ class Class1:
         stri += "\t\t\t\t\tgeometry IndexedFaceSet {\n"
         stri += "\t\t\t\t\t\tcoord Coordinate {\n"
         stri += "\t\t\t\t\t\t\tpoint [\n"
-        stri += listStr3(self.pointIndexLeaf,7 ) + "]\n"
+        stri += listStr(self.pointIndexLeaf,7, 3) + "]\n"
         stri += "\t\t\t\t\t\t}\n"
         stri += "\t\t\t\t\t\tcoordIndex [\n"
-        stri += listStr4(self.coordIndexLeaf,6) + "]\n"
+        stri += listStr(self.coordIndexLeaf,6, 4) + "]\n"
         stri += "\t\t\t\t\t}\n"
         stri += "\t\t\t\t}\n"
         stri += "\t\t\t]\n"
@@ -124,11 +122,11 @@ class Class1:
         stri += "\t\t\tgeometry Extrusion {\n"
         stri += "\t\t\t\tccw TRUE\n"
         stri += "\t\t\t\tspine [\n"
-        stri += listStr3(self.spineTrunk, 4) + "]\n"
+        stri += listStr(self.spineTrunk, 4, 3) + "]\n"
         stri += "\t\t\t\tscale [\n"
-        stri += listStr2(self.scaleTrunk, 4) + "]\n"
+        stri += listStr(self.scaleTrunk, 4, 2) + "]\n"
         stri += "\t\t\t\tcrossSection [\n"
-        stri += listStr2(self.crossSection, 4) + "]\n"
+        stri += listStr(self.crossSection, 4, 2) + "]\n"
         stri += "\t\t\t}\n"
         stri += "\t\t}\n"
         stri += "\t]\n"

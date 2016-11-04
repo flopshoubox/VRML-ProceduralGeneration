@@ -1,7 +1,4 @@
 #!/usr/bin/python
-import os
-from random import randint
-from random import uniform
 from CostumPrint import *
 
 class Sapin:
@@ -29,9 +26,10 @@ class Sapin:
         self.scaleTree = [S, S, S]
 
     def toString(self):
-        stri = "#VRML V2.0 utf8\n\n"
+        #stri = "#VRML V2.0 utf8\n\n"
+        RandColor(self.colorLeaf)
 
-        stri += "Transform {\n"
+        stri = "Transform {\n"
         stri += "\ttranslation " + "  ".join(str(x) for x in self.posTree) + "\n"
         stri += "\tscale " + "  ".join(str(x) for x in self.scaleTree) + "\n"
         stri += "\tchildren [\n"
@@ -54,11 +52,11 @@ class Sapin:
             stri += "\t\t\t\t\tgeometry Extrusion {\n"
             stri += "\t\t\t\t\t\tccw TRUE\n"
             stri += "\t\t\t\t\t\tspine [\n"
-            stri += listStr3(self.spineLeaf, 6) + "]\n"
+            stri += listStr(self.spineLeaf, 6, 3) + "]\n"
             stri += "\t\t\t\t\tscale [\n"
-            stri += listStr2(self.scaleLeaf, 6) + "]\n"
+            stri += listStr(self.scaleLeaf, 6, 2) + "]\n"
             stri += "\t\t\t\t\t\tcrossSection [\n"
-            stri += listStr2(self.crossSectionLeaf, 6) + "]\n"
+            stri += listStr(self.crossSectionLeaf, 6, 2) + "]\n"
             stri += "\t\t\t\t\t}\n"
             stri += "\t\t\t\t}\n"
             stri += "\t\t\t]\n"
@@ -76,11 +74,11 @@ class Sapin:
         stri += "\t\t\t\t\tgeometry Extrusion {\n"
         stri += "\t\t\t\t\t\tccw TRUE\n"
         stri += "\t\t\t\t\t\tspine [\n"
-        stri += listStr3(self.spineTrunk, 6) + "]\n"
+        stri += listStr(self.spineTrunk, 6, 3) + "]\n"
         stri += "\t\t\t\t\t\tscale [\n"
-        stri += listStr2(self.scaleTrunk, 6) + "]\n"
+        stri += listStr(self.scaleTrunk, 6, 2) + "]\n"
         stri += "\t\t\t\t\t\tcrossSection [\n"
-        stri += listStr2(self.crossSectionTrunk, 6) + "]\n"
+        stri += listStr(self.crossSectionTrunk, 6, 2) + "]\n"
         stri += "\t\t\t\t\t}\n"
         stri += "\t\t\t\t}\n"
         stri += "\t\t\t]\n"

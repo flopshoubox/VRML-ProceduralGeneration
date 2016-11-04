@@ -1,7 +1,4 @@
 #!/usr/bin/python
-import os
-from random import randint
-from random import uniform
 from CostumPrint import *
 
 class Class2:
@@ -25,9 +22,10 @@ class Class2:
 
     def toString(self):
         m = randint(2,3)
-        stri = "#VRML V2.0 utf8\n\n"
+        RandColor(self.colorLeaf)
+        #stri = "#VRML V2.0 utf8\n\n"
 
-        stri += "Transform {\n"
+        stri = "Transform {\n"
         stri += "\ttranslation " + "  ".join(str(x) for x in self.posTree) + "\n"
         stri += "\tscale " + "  ".join(str(x) for x in self.scaleTree) + "\n"
         stri += "\tchildren [\n"
@@ -48,10 +46,10 @@ class Class2:
             stri += "\t\t\t\tgeometry IndexedFaceSet {\n"
             stri += "\t\t\t\t\tcoord Coordinate {\n"
             stri += "\t\t\t\t\t\tpoint [\n"
-            stri += listStr3(tempLeaf,6 ) + "]\n"
+            stri += listStr(tempLeaf,6, 3) + "]\n"
             stri += "\t\t\t\t\t}\n"
             stri += "\t\t\t\t\tcoordIndex [\n"
-            stri += listStr4(self.coordIndexLeaf,5) + "]\n"
+            stri += listStr(self.coordIndexLeaf, 5 , 4) + "]\n"
             stri += "\t\t\t\t}\n"
             stri += "\t\t\t}\n"
             stri += "\t\t]\n"
@@ -68,11 +66,11 @@ class Class2:
         stri += "\t\tgeometry Extrusion {\n"
         stri += "\t\t\tccw TRUE\n"
         stri += "\t\t\tspine [\n"
-        stri += listStr3(self.spineTrunk, 3) + "]\n"
+        stri += listStr(self.spineTrunk, 3, 3) + "]\n"
         stri += "\t\t\t\tscale [\n"
-        stri += listStr2(self.scaleTrunk, 3) + "]\n"
+        stri += listStr(self.scaleTrunk, 3, 2) + "]\n"
         stri += "\t\t\t\tcrossSection [\n"
-        stri += listStr2(self.crossSection, 3) + "]\n"
+        stri += listStr(self.crossSection, 3, 2) + "]\n"
         stri += "\t\t\t}\n"
         stri += "\t\t}\n"
         stri += "\t]\n"
