@@ -7,7 +7,22 @@ from Sapin import Sapin
 from CostumPrint import *
 from random import randint
 
-def main():
+def randTree(X=0,Y=0,Z=0,S=1,Type=-1):
+    if Type == -1:
+        Type = randint(0,3)
+
+    if typ == 0:
+        my_tree = Class1(X,Y,Z,S)
+    elif typ == 1:
+        my_tree = Class2(X,Y,Z,S)
+    elif typ == 2:
+        my_tree = Cypres(X,Y,Z,S)
+    elif typ == 3:
+        my_tree = Sapin(X,Y,Z,S)
+
+    return my_tree.toString()
+
+if __name__ == '__main__':
     typ = randint(0,3)
 
     if typ == 0:
@@ -27,6 +42,3 @@ def main():
     mon_fic.write("}\n")
     mon_fic.write(my_tree.toString())
     mon_fic.close()
-
-if __name__ == '__main__':
-    main()
