@@ -83,7 +83,7 @@ def elevationGridColor(taille,entree):
 			for y in xrange(taille-1):
 				moyenne = ( ( entree[x][y] + entree[x+1][y] + entree[x][y+1] + entree[x+1][y+1] ) / 4)
 				if moyenne < 0:
-					sortie [x][y] = "0 0.3 0.7"
+					sortie [x][y] = "0 0.1 0.5"
 					pass
 				elif moyenne < 3:
 					sortie [x][y] = "0.15 0.3 0"
