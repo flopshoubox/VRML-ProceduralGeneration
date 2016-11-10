@@ -4,7 +4,7 @@
 import os
 
 from math import pow
-
+from TreeClass.RandTree import randTree
 from random import randint
 
 def carreDiamant(taille,facteur):
@@ -77,11 +77,11 @@ def lightAngle(heure):
 	angles [1] = angleY[heure]
 	return angles
 
-def elevationGridColor(taille,entree):
+def elevationGridColor(taille,grid):
 	sortie = [["0 0 0"] * (taille-1) for _ in range (taille-1)]
 	for x in xrange(taille-1):
 			for y in xrange(taille-1):
-				moyenne = ( ( entree[x][y] + entree[x+1][y] + entree[x][y+1] + entree[x+1][y+1] ) / 4)
+				moyenne = ( ( grid[x][y] + grid[x+1][y] + grid[x][y+1] + grid[x+1][y+1] ) / 4)
 				if moyenne < 0:
 					sortie [x][y] = "0 0.1 0.5"
 					pass
@@ -97,5 +97,14 @@ def elevationGridColor(taille,entree):
 				pass
 			pass
 	return sortie
+def treePlacer(taille,grid):
+	xCoordTree = 0
+	zCoordTree = 0
+	yCoordtree = grid[xCoordTree][zCoordTree]-0.5
+	treeSize = 1
+	treeType = 0
+	sortie = randTree(xCoordTree,yCoordtree,zCoordTree,treeSize,treeType)
+	return sortie
+
 
 
