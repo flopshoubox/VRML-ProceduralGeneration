@@ -98,12 +98,21 @@ def elevationGridColor(taille,grid):
 			pass
 	return sortie
 def treePlacer(taille,grid):
-	xCoordTree = 0
-	zCoordTree = 0
-	yCoordtree = grid[xCoordTree][zCoordTree]-0.5
-	treeSize = 1
-	treeType = 0
-	sortie = randTree(xCoordTree,yCoordtree,zCoordTree,treeSize,treeType)
+	sortie = ""
+	for x in xrange(taille-1):
+			for z in xrange(taille-1):
+				if grid[x][z] > 0 and grid[x][z] < 70:
+					choixArbre = randint(0,12)
+					if choixArbre < 3:
+						sortie += randTree(x,grid[x][z],z,1,3) + "\n"
+					pass
+				elif grid[x][z] > 70:
+					choixArbre = randint(0,4)
+					if choixArbre == 0:
+						sortie += randTree(x,grid[x][z],z,1,3) + "\n"
+					pass
+				pass
+			pass
 	return sortie
 
 
