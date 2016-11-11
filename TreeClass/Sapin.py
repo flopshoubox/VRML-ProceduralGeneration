@@ -27,7 +27,7 @@ class Sapin:
 
     def toString(self):
         #stri = "#VRML V2.0 utf8\n\n"
-        RandColor(self.colorLeaf)
+        tempColor = RandColor(self.colorLeaf[:])
 
         stri = "\t\t\t\t\tTransform {\n"
         stri += "\t\t\t\t\t\ttranslation " + "  ".join(str(x) for x in self.posTree) + "\n"
@@ -46,7 +46,7 @@ class Sapin:
             stri += "\t\t\t\t\t\t\t\t\tShape {\n"
             stri += "\t\t\t\t\t\t\t\t\t\tappearance	Appearance {\n"
             stri += "\t\t\t\t\t\t\t\t\t\t\tmaterial Material {\n"
-            stri += "\t\t\t\t\t\t\t\t\t\t\t\tdiffuseColor "+ " ".join(str(x) for x in self.colorLeaf) + "\n"
+            stri += "\t\t\t\t\t\t\t\t\t\t\t\tdiffuseColor "+ " ".join(str(x) for x in tempColor) + "\n"
             stri += "\t\t\t\t\t\t\t\t\t\t\t}\n"
             stri += "\t\t\t\t\t\t\t\t\t\t}\n"
             stri += "\t\t\t\t\t\t\t\t\t\tgeometry Extrusion {\n"

@@ -22,7 +22,7 @@ class Class2:
 
     def toString(self):
         m = randint(2,3)
-        RandColor(self.colorLeaf)
+        tempColor = RandColor(self.colorLeaf[:])
         #stri = "#VRML V2.0 utf8\n\n"
 
         stri = "\t\t\t\t\tTransform {\n"
@@ -40,7 +40,7 @@ class Class2:
             stri += "\t\t\t\t\t\t\t\t\tShape {\n"
             stri += "\t\t\t\t\t\t\t\t\t\tappearance Appearance {\n"
             stri += "\t\t\t\t\t\t\t\t\t\t\tmaterial Material {\n"
-            stri += "\t\t\t\t\t\t\t\t\t\t\t\tdiffuseColor " + "     ".join(str(x) for x in self.colorLeaf) + "\n"
+            stri += "\t\t\t\t\t\t\t\t\t\t\t\tdiffuseColor " + "     ".join(str(x) for x in tempColor) + "\n"
             stri += "\t\t\t\t\t\t\t\t\t\t\t}\n"
             stri += "\t\t\t\t\t\t\t\t\t\t}\n"
             stri += "\t\t\t\t\t\t\t\t\t\tgeometry IndexedFaceSet {\n"
@@ -55,7 +55,7 @@ class Class2:
             stri += "\t\t\t\t\t\t\t\t]\n"
             stri += "\t\t\t\t\t\t\t}\n"
 
-        self.spineTrunk = matrixRandTrunk(self.spineTrunk)
+        tempSpineTrunk = matrixRandTrunk(self.spineTrunk[:])
         # stri += "\t}\n"
         stri += "\t\t\t\t\t\t\tShape {\n"
         stri += "\t\t\t\t\t\t\t\tappearance Appearance {\n"
@@ -66,7 +66,7 @@ class Class2:
         stri += "\t\t\t\t\t\t\t\tgeometry Extrusion {\n"
         stri += "\t\t\t\t\t\t\t\t\tccw TRUE\n"
         stri += "\t\t\t\t\t\t\t\t\tspine [\n"
-        stri += listStr(self.spineTrunk, 9, 3) + "]\n"
+        stri += listStr(tempSpineTrunk, 9, 3) + "]\n"
         stri += "\t\t\t\t\t\t\t\t\t\tscale [\n"
         stri += listStr(self.scaleTrunk, 9, 2) + "]\n"
         stri += "\t\t\t\t\t\t\t\t\t\tcrossSection [\n"
