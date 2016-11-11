@@ -21,8 +21,8 @@ class Cypres:
         self.scaleTree = [S, S, S]
 
     def toString(self):
-        self.pointIndexLeaf = matrixRand(self.pointIndexLeaf)
-        RandColor(self.colorLeaf)
+        tempPointIndexLeaf = matrixRand(self.pointIndexLeaf[:])
+        tempColor = RandColor(self.colorLeaf[:])
 
         #stri = "#VRML V2.0 utf8\n\n"
 
@@ -38,13 +38,13 @@ class Cypres:
         stri += "\t\t\t\t\t\t\t\t\tShape {\n"
         stri += "\t\t\t\t\t\t\t\t\t\tappearance Appearance {\n"
         stri += "\t\t\t\t\t\t\t\t\t\t\tmaterial Material {\n"
-        stri += "\t\t\t\t\t\t\t\t\t\t\t\tdiffuseColor " + " ".join(str(x) for x in self.colorLeaf) + "\n"
+        stri += "\t\t\t\t\t\t\t\t\t\t\t\tdiffuseColor " + " ".join(str(x) for x in tempColor) + "\n"
         stri += "\t\t\t\t\t\t\t\t\t\t\t}\n"
         stri += "\t\t\t\t\t\t\t\t\t\t}\n"
         stri += "\t\t\t\t\t\t\t\t\t\tgeometry IndexedFaceSet {\n"
         stri += "\t\t\t\t\t\t\t\t\t\t\tcoord Coordinate {\n"
         stri += "\t\t\t\t\t\t\t\t\t\t\t\tpoint [\n"
-        stri += listStr(self.pointIndexLeaf,12, 3) + "]\n"
+        stri += listStr(tempPointIndexLeaf,12, 3) + "]\n"
         stri += "\t\t\t\t\t\t\t\t\t\t\t}\n"
         stri += "\t\t\t\t\t\t\t\t\t\t\tcoordIndex [\n"
         stri += listStr(self.coordIndexLeaf,11, 4) + "]\n"
