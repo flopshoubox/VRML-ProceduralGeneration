@@ -65,7 +65,7 @@ def colourTemperature(heure):
 	return sortie
 
 def intensity(heure):
-	finalIntensity = [0.6, 0.8, 0.9, 1]
+	finalIntensity = [0.6, 0.7, 0.8, 0.9]
 	intensity = finalIntensity[heure]
 	return intensity
 
@@ -97,19 +97,22 @@ def elevationGridColor(taille,grid):
 				pass
 			pass
 	return sortie
-def treePlacer(taille,grid):
+def treePlacer(taille,grid,space):
 	sortie = ""
 	for x in xrange(taille-1):
 			for z in xrange(taille-1):
-				if grid[x][z] > 0 and grid[x][z] < 70:
+				minY = min(grid[x][z],grid[x][z+1],grid[x+1][z],grid[x+1][z+1])-0.5
+				posX = z*space+space/2
+				posZ = x*space+space/2
+				if grid[x][z] > 3 and grid[x][z] < 70:
 					choixArbre = randint(0,12)
 					if choixArbre < 3:
-						sortie += randTree(x,grid[x][z],z,1,3) + "\n"
+						sortie += randTree(posX,minY,posZ,3,3) + "\n"
 					pass
 				elif grid[x][z] > 70:
 					choixArbre = randint(0,4)
 					if choixArbre == 0:
-						sortie += randTree(x,grid[x][z],z,1,3) + "\n"
+						sortie += randTree(posX,minY,posZ,3,3) + "\n"
 					pass
 				pass
 			pass

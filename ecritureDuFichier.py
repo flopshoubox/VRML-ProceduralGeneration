@@ -6,7 +6,7 @@ from math import pow
 from random import randint
 
 #Choix des parametres du programme
-largeurMatrice = 5 #La matrice finale sera de taille 2^largeurMatrice+1
+largeurMatrice = 6 #La matrice finale sera de taille 2^largeurMatrice+1
 ratio = 10 #Il est multiplié à la valeur alératoire à ajouter à chaque point de la matrice
 xSpacing = int(ratio*largeurMatrice/12)
 zSpacing = int(ratio*largeurMatrice/12)
@@ -38,7 +38,7 @@ mon_fichier.write("\n\tGroup {")
 mon_fichier.write("\n\t\tchildren [")
 mon_fichier.write("\n\t\t\tWorldInfo {")
 mon_fichier.write("\n\t\t\t\ttitle \"Generation procedurale d'un terrain\"")
-mon_fichier.write("\n\t\t\t\tinfo [ \"Auteur : Florent PERGOUD (perf13)")
+mon_fichier.write("\n\t\t\t\tinfo [ \"Auteurs: Florent PERGOUD et Alexis CARE")
 mon_fichier.write("\n\t\t\t\t\t- automne 2016 - UQO")
 mon_fichier.write("\n\t\t\t\t\tUtilisez la souris pour découvrir l'environnment.\"]")
 mon_fichier.write("\n\t\t\t}")
@@ -47,7 +47,7 @@ mon_fichier.write("\n\t\t\t\tavatarSize [0.25, 1.6, 0.75]")
 mon_fichier.write("\n\t\t\t\theadlight FALSE")
 mon_fichier.write("\n\t\t\t\tspeed 7.0")
 mon_fichier.write("\n\t\t\t\ttype \"WALK\"")
-mon_fichier.write("\n\t\t\t\tvisibilityLimit 800.0")
+mon_fichier.write("\n\t\t\t\tvisibilityLimit 200.0")
 mon_fichier.write("\n\t\t\t}")
 mon_fichier.write("\n\t\t\tViewpoint {")
 mon_fichier.write("\n\t\t\t\tposition " + posX + " " + posY + " " + posZ + "# 500 pour être sûr de ne pas passer sous la carte")
@@ -140,8 +140,7 @@ mon_fichier.write("\n\t\t\t\t\t\t\t}")
 mon_fichier.write("\n\t\t\t\t\t\t}")
 mon_fichier.write("\n\t\t\t\t\t}\n")
 #Adding trees
-mon_fichier.write(generator.treePlacer(taille,gridElevation))
-
+mon_fichier.write(generator.treePlacer(taille,gridElevation,xSpacing))
 mon_fichier.write("\n\t\t\t\t]")
 mon_fichier.write("\n\t\t\t}")
 mon_fichier.write("\n\t\t]")
