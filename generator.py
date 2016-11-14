@@ -12,11 +12,13 @@ def carreDiamant(taille,facteur):
 	if facteur > 1:
 		facteur =1
 		pass
+	profondeurMax = -30
+	hauteurMax = 100
 	liste = [[0] * taille for _ in range (taille)]
-	liste[0][0]=int(facteur * randint(-taille,taille))
-	liste[0][taille-1]=int(facteur * randint(-taille,taille))
-	liste[taille-1][0]=int(facteur * randint(-taille,taille))
-	liste[taille-1][taille-1]=int(facteur * randint(-taille,taille))
+	liste[0][0]=int(facteur * randint(profondeurMax,hauteurMax))
+	liste[0][taille-1]=int(facteur * randint(profondeurMax,hauteurMax))
+	liste[taille-1][0]=int(facteur * randint(profondeurMax,hauteurMax))
+	liste[taille-1][taille-1]=int(facteur * randint(profondeurMax,hauteurMax))
 	i = taille - 1
 	while i > 1:
 		j = i / 2
@@ -57,7 +59,7 @@ def carreDiamant(taille,facteur):
 
 def colourTemperature(heure):
 	#4 positions : levé/couché, 1 heure avant/après, moyen été, midi été.
-	rgbFinalColour = [1,0.53,0.05, 1,0.75,0.55, 1,0.83,0.70, 1,0.92,0.86]
+	rgbFinalColour = [0.5,0.5,0.5, 0.7,0.7,0.7, 0.8,0.8,0.8, 1,1,1]
 	sortie = [0,0,0]
 	for x in xrange(0,3):
 		sortie[x] =rgbFinalColour[heure * 3 + x]
@@ -88,7 +90,7 @@ def elevationGridColor(taille,grid):
 				elif moyenne < 3:
 					sortie [x][y] = "0.15 0.3 0"
 					pass
-				elif moyenne < 70:
+				elif moyenne < 50:
 					sortie [x][y] = "0 0.6 0"
 					pass
 				else :
@@ -104,18 +106,21 @@ def treePlacer(taille,grid,space):
 				minY = min(grid[x][z],grid[x][z+1],grid[x+1][z],grid[x+1][z+1])-0.5
 				posX = z*space+space/2
 				posZ = x*space+space/2
-				if grid[x][z] > 3 and grid[x][z] < 70:
-					choixArbre = randint(0,12)
-					if choixArbre < 3:
+				proba = randint(0,20)
+				if proba < 1 and grid[x][z] > 3:
+					if grid[x][z] <= 20:
+						sortie += randTree(posX,minY,posZ,3,0) + "\n"
+						pass
+					elif grid[x][z] <= 35:
+						sortie += randTree(posX,minY,posZ,3,1) + "\n"
+						pass
+					elif grid[x][z] <= 50:
+						sortie += randTree(posX,minY,posZ,3,2) + "\n"
+						pass
+					elif grid[x][z] > 50:
 						sortie += randTree(posX,minY,posZ,3,3) + "\n"
+						pass
 					pass
-				elif grid[x][z] > 70:
-					choixArbre = randint(0,4)
-					if choixArbre == 0:
-						sortie += randTree(posX,minY,posZ,3,3) + "\n"
-					pass
-				pass
-			pass
 	return sortie
 
 
