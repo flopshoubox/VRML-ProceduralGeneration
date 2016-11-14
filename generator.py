@@ -12,7 +12,7 @@ def carreDiamant(taille,facteur):
 	if facteur > 1:
 		facteur =1
 		pass
-	profondeurMax = -30
+	profondeurMax = -15
 	hauteurMax = 100
 	liste = [[0] * taille for _ in range (taille)]
 	liste[0][0]=int(facteur * randint(profondeurMax,hauteurMax))
@@ -59,7 +59,7 @@ def carreDiamant(taille,facteur):
 
 def colourTemperature(heure):
 	#4 positions : levé/couché, 1 heure avant/après, moyen été, midi été.
-	rgbFinalColour = [1,0.5,0.3, 1,0.7,0.5, 1,0.8,0.8, 1,1,1]
+	rgbFinalColour = [1,0.5,0.3, 1,0.7,0.5, 1,0.8,0.8, 1,0.9,0.9, 1,1,1]
 	sortie = [0,0,0]
 	for x in xrange(0,3):
 		sortie[x] =rgbFinalColour[heure * 3 + x]
@@ -68,7 +68,7 @@ def colourTemperature(heure):
 
 def skyColour(heure):
 	#4 positions : levé/couché, 1 heure avant/après, moyen été, midi été.
-	rgbFinalColour = [1,0.51,0.2, 1,0.67,0.45, 0.19,0.55,0.8, 0.21,0.62,0.93]
+	rgbFinalColour = [1,0.51,0.2, 1,0.67,0.45, 0.19,0.55,0.8, 0.21,0.62,0.93, 1,1,1]
 	sortie = [0,0,0]
 	for x in xrange(0,3):
 		sortie[x] =rgbFinalColour[heure * 3 + x]
@@ -76,13 +76,13 @@ def skyColour(heure):
 	return sortie
 
 def intensity(heure):
-	finalIntensity = [0.6, 0.7, 0.8, 0.9]
+	finalIntensity = [0.6, 0.7, 0.8, 0.9, 0.8]
 	intensity = finalIntensity[heure]
 	return intensity
 
 def lightAngle(heure):
-	angleX = [0.9, 0.8, 0.2, 0]
-	angleY = [-0.1, -0.2, -0.8, -1]
+	angleX = [0.9, 0.8, 0.2, 0, 0.9]
+	angleY = [-0.1, -0.2, -0.8, -1, -0.1]
 	angles = [0,0]
 	angles [0] = angleX[heure] 
 	angles [1] = angleY[heure]
