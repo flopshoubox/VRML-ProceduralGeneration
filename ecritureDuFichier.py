@@ -19,12 +19,9 @@ gridColor = generator.elevationGridColor(taille,gridElevation)
 
 
 #Calcul de la position de l'avatar
-#posX = str(pow(2,largeurMatrice-1)+1)
+posX = str(pow(2,largeurMatrice-1)+1)
 posY = "500"
-#posZ = str(pow(2,largeurMatrice-1)+1)
-
-posX = str(-taille + taille*xSpacing)
-posZ = str(-taille + taille*xSpacing)
+posZ = str(pow(2,largeurMatrice-1)+1)
 
 #Calcul des paramètresliés à l'heure dans la journée
 heure = randint(0,3)
@@ -33,6 +30,8 @@ intensity = generator.intensity(heure)
 angles = generator.lightAngle(heure)
 angleX = str(angles[0])
 angleY = str(angles[1])
+skyColour = generator.skyColour(heure)
+
 
 #Création du fichier texte
 mon_fichier = open("base.wrl", "w")
@@ -57,7 +56,7 @@ mon_fichier.write("\n\t\t\t\tposition " + posX + " " + posY + " " + posZ + "# 50
 mon_fichier.write("\n\t\t\t\torientation 0 0 0 0")
 mon_fichier.write("\n\t\t\t}")
 mon_fichier.write("\n\t\t\tBackground {")
-mon_fichier.write("\n\t\t\t\tskyColor [0.165 0.616 0.843 0 0.882 1]")
+mon_fichier.write("\n\t\t\t\tskyColor [ 0 0.882 1 " + str(skyColour)[1:-1] + "]")
 mon_fichier.write("\n\t\t\t\tskyAngle [1.57 3.14]")
 mon_fichier.write("\n\t\t\t}")
 mon_fichier.write("\n\t\t\tDEF RayonsSolaires DirectionalLight {")

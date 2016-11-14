@@ -66,6 +66,15 @@ def colourTemperature(heure):
 		pass
 	return sortie
 
+def skyColour(heure):
+	#4 positions : levé/couché, 1 heure avant/après, moyen été, midi été.
+	rgbFinalColour = [1,0.51,0.2, 1,0.67,0.45, 0.19,0.55,0.8, 0.21,0.62,0.93]
+	sortie = [0,0,0]
+	for x in xrange(0,3):
+		sortie[x] =rgbFinalColour[heure * 3 + x]
+		pass
+	return sortie
+
 def intensity(heure):
 	finalIntensity = [0.6, 0.7, 0.8, 0.9]
 	intensity = finalIntensity[heure]
@@ -99,6 +108,7 @@ def elevationGridColor(taille,grid):
 				pass
 			pass
 	return sortie
+
 def treePlacer(taille,grid,space):
 	sortie = ""
 	for x in xrange(taille-1):
