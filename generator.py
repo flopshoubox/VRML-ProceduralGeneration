@@ -59,7 +59,7 @@ def carreDiamant(taille,facteur):
 
 def colourTemperature(heure):
 	#4 positions : levé/couché, 1 heure avant/après, moyen été, midi été.
-	rgbFinalColour = [0.5,0.5,0.5, 0.7,0.7,0.7, 0.8,0.8,0.8, 1,1,1]
+	rgbFinalColour = [1,0.5,0.3, 1,0.7,0.5, 1,0.8,0.8, 1,1,1]
 	sortie = [0,0,0]
 	for x in xrange(0,3):
 		sortie[x] =rgbFinalColour[heure * 3 + x]
