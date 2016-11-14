@@ -12,7 +12,7 @@ def carreDiamant(taille,facteur):
 	if facteur > 1:
 		facteur =1
 		pass
-	profondeurMax = -15
+	profondeurMax = -40
 	hauteurMax = 100
 	liste = [[0] * taille for _ in range (taille)]
 	liste[0][0]=int(facteur * randint(profondeurMax,hauteurMax))
