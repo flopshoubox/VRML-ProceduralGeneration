@@ -8,8 +8,8 @@ from random import randint
 #Choix des parametres du programme
 largeurMatrice = 6 #La matrice finale sera de taille 2^largeurMatrice+1
 ratio = 10 #Il est multiplié à la valeur alératoire à ajouter à chaque point de la matrice
-xSpacing = int(ratio*largeurMatrice/12)
-zSpacing = int(ratio*largeurMatrice/12)
+xSpacing = int(ratio*largeurMatrice/10)
+zSpacing = int(ratio*largeurMatrice/10)
 
 #Calcul du terrain
 taille = int(pow(2,largeurMatrice))+1
@@ -20,9 +20,8 @@ gridColor = generator.elevationGridColor(taille,gridElevation)
 
 #Calcul de la position de l'avatar
 posX = str(pow(2,largeurMatrice-1)+1)
-posY = "500"
 posZ = str(pow(2,largeurMatrice-1)+1)
-
+posY = str(gridElevation[int(pow(2,largeurMatrice-1)+1)][int(pow(2,largeurMatrice-1)+1)])
 #Calcul des paramètresliés à l'heure dans la journée
 heure = randint(0,4)
 ambientLightColour = generator.colourTemperature(heure)
@@ -52,7 +51,7 @@ mon_fichier.write("\n\t\t\t\ttype \"WALK\"")
 mon_fichier.write("\n\t\t\t\tvisibilityLimit 200.0")
 mon_fichier.write("\n\t\t\t}")
 mon_fichier.write("\n\t\t\tViewpoint {")
-mon_fichier.write("\n\t\t\t\tposition " + posX + " " + posY + " " + posZ + "# 500 pour être sûr de ne pas passer sous la carte")
+mon_fichier.write("\n\t\t\t\tposition " + posX + " " + posY + " " + posZ + " # 500 pour être sûr de ne pas passer sous la carte")
 mon_fichier.write("\n\t\t\t\torientation 0 0 0 0")
 mon_fichier.write("\n\t\t\t}")
 mon_fichier.write("\n\t\t\tBackground {")
@@ -65,6 +64,33 @@ mon_fichier.write("\n\t\t\t\tintensity " + str(intensity))
 mon_fichier.write("\n\t\t\t\tambientIntensity 1")
 mon_fichier.write("\n\t\t\t\tcolor " + str(ambientLightColour[0]) + " " + str(ambientLightColour[1]) + " " + str(ambientLightColour[2]))
 mon_fichier.write("\n\t\t\t}")
+
+mon_fichier.write("\n\t\t\tDEF Proxi ProximitySensor {")
+mon_fichier.write("\n\t\t\t\tsize 100 100 100")
+mon_fichier.write("\n\t\t\t\tcenter " + posX + " " + posY + " " + posZ)
+mon_fichier.write("\n\t\t\t}")
+
+mon_fichier.write("\n\t\t\tDEF TimeSens TimeSensor {")
+mon_fichier.write("\n\t\t\t\tloop TRUE")
+mon_fichier.write("\n\t\t\t}")
+
+mon_fichier.write("\n\t\t\tDEF SoundEmitter Transform {")
+mon_fichier.write("\n\t\t\t\ttranslation " + posX + " " + posY + " " + posZ)
+mon_fichier.write("\n\t\t\t\tchildren [")
+mon_fichier.write("\n\t\t\t\t\tSound {")
+mon_fichier.write("\n\t\t\t\t\t\tsource DEF DroneSound AudioClip {")
+mon_fichier.write("\n\t\t\t\t\t\t\turl \"tone1.wav\"")
+mon_fichier.write("\n\t\t\t\t\t\t\t}")
+mon_fichier.write("\n\t\t\t\t\t\tintensity 1")
+mon_fichier.write("\n\t\t\t\t\t\tlocation 0 0 0")
+mon_fichier.write("\n\t\t\t\t\t\tdirection 0 0 1")
+mon_fichier.write("\n\t\t\t\t\t\tminFront 10")
+mon_fichier.write("\n\t\t\t\t\t\tmaxFront 20.0")
+mon_fichier.write("\n\t\t\t\t\t\tminBack 10")
+mon_fichier.write("\n\t\t\t\t\t\tmaxBack 20.0")
+mon_fichier.write("\n\t\t\t\t\t\t}")
+mon_fichier.write("\n\t\t\t\t\t]")
+mon_fichier.write("\n\t\t\t\t}")
 
 if heure == 4 :
 	mon_fichier.write("\n\t\t\tFog {")
@@ -104,7 +130,6 @@ mon_fichier.write("\n\t\t\t\t\t\t}\n")
 mon_fichier.write("\n\t\t\t\t\t}\n")
 mon_fichier.write("\n\t\t\t\t]")
 mon_fichier.write("\n\t\t\t}")
-
 
 mon_fichier.write("\n\t\t\tTransform {")
 mon_fichier.write("\n\t\t\t\tscale 1 1 1")
@@ -260,4 +285,10 @@ mon_fichier.write("\n\t\t\t\t]")
 mon_fichier.write("\n\t\t\t}")
 mon_fichier.write("\n\t\t]")
 mon_fichier.write("\n\t}")
+mon_fichier.write("\n")
+mon_fichier.write("\nROUTE Proxi.orientation_changed TO SoundEmitter.set_rotation")
+mon_fichier.write("\nROUTE Proxi.position_changed TO SoundEmitter.set_translation")
+mon_fichier.write("\nROUTE Proxi.position_changed TO Proxi.set_center")
+mon_fichier.write("\nROUTE TimeSens.cycleTime TO DroneSound.startTime")
+
 mon_fichier.close()
