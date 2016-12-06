@@ -88,6 +88,53 @@ def lightAngle(heure):
 	angles [1] = angleY[heure]
 	return angles
 
+def ambianceSoundChoose(heure, zone):
+	if heure == 0:
+		if zone == 0:
+			sound = "merSoir.wav"
+			pass
+		elif zone == 1:
+			sound = "briseOiseau.wav"
+			pass
+		else:
+			sound = "ventMontagneFaible.wav"
+			pass
+		pass
+	elif heure == 1:
+		if zone == 0:
+			sound = "merFinAprem.wav"
+			pass
+		elif zone == 1:
+			sound = "briseFeuilleOiseau.wav"
+			pass
+		else:
+			sound = "ventMontagneFaible.wav"
+			pass
+		pass
+	elif heure == 2:
+		if zone == 0:
+			sound = "merGrossesVagues.wav"
+			pass
+		elif zone == 1:
+			sound = "foretJournee.wav"
+			pass
+		else:
+			sound = "ventMontagneFort.wav"
+			pass
+		pass
+	else:
+		if zone == 0:
+			sound = "merGrossesVagues.wav"
+			pass
+		elif zone == 1:
+			sound = "foretAbeille.wav"
+			pass
+		else:
+			sound = "ventMontagneFort.wav"
+			pass
+		pass
+	return sound
+
 def elevationGridColor(taille,grid):
 	sortie = [["0 0 0"] * (taille-1) for _ in range (taille-1)]
 	for x in xrange(taille-2):
@@ -116,7 +163,7 @@ def treePlacer(taille,grid,space):
 				minY = min(grid[x][z],grid[x][z+1],grid[x+1][z],grid[x+1][z+1])-0.5
 				posX = z*space+space/2
 				posZ = x*space+space/2
-				proba = randint(0,20)
+				proba = randint(0,10)
 				if proba < 1 and grid[x][z] > 7:
 					if grid[x][z] <= 20:
 						sortie += randTree(posX,minY,posZ,3,0) + "\n"
