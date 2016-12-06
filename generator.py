@@ -90,13 +90,13 @@ def lightAngle(heure):
 
 def elevationGridColor(taille,grid):
 	sortie = [["0 0 0"] * (taille-1) for _ in range (taille-1)]
-	for x in xrange(taille-1):
+	for x in xrange(taille-2):
 			for y in xrange(taille-1):
 				moyenne = ( ( grid[x][y] + grid[x+1][y] + grid[x][y+1] + grid[x+1][y+1] ) / 4)
-				if moyenne < 0:
+				if moyenne < -1:
 					sortie [x][y] = "0 0.1 0.5"
 					pass
-				elif moyenne < 3:
+				elif moyenne < 7:
 					sortie [x][y] = "0.15 0.3 0"
 					pass
 				elif moyenne < 50:
@@ -117,17 +117,17 @@ def treePlacer(taille,grid,space):
 				posX = z*space+space/2
 				posZ = x*space+space/2
 				proba = randint(0,20)
-				if proba < 1 and grid[x][z] > 3:
+				if proba < 1 and grid[x][z] > 7:
 					if grid[x][z] <= 20:
 						sortie += randTree(posX,minY,posZ,3,0) + "\n"
 						pass
 					elif grid[x][z] <= 35:
 						sortie += randTree(posX,minY,posZ,3,1) + "\n"
 						pass
-					elif grid[x][z] <= 50:
+					elif grid[x][z] <= 47:
 						sortie += randTree(posX,minY,posZ,3,2) + "\n"
 						pass
-					elif grid[x][z] > 50:
+					elif grid[x][z] > 51:
 						sortie += randTree(posX,minY,posZ,3,3) + "\n"
 						pass
 					pass
